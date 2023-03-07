@@ -53,15 +53,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getuserdata() {
-        final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-        progressDialog.setCancelable(false); // set cancelable to false
-        progressDialog.setMessage("Please Wait"); // set message
-        progressDialog.show();
         (Api_interface.getClient().getUsersList()).enqueue(new Callback<List<POJO>>() {
             @Override
             public void onResponse(Call<List<POJO>> call, Response<List<POJO>> response) {
                 Log.d("responseGet",response.body().get(0).getUsername());
-                progressDialog.dismiss();
                 userListResponseData = response.body();
                 setData();
             }
